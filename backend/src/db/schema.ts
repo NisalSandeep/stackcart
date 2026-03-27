@@ -7,7 +7,10 @@ export const users = pgTable("users", {
   name: text("name").notNull(),
   imageUrl: text("image_url"),
   createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
-  updatedAt: timestamp("updated_at", { mode: "date" }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { mode: "date" })
+    .notNull()
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
 export const products = pgTable("products", {
@@ -52,10 +55,9 @@ export const commentsRelations = relations(comments, ({ one }) => ({
   }), // One comment → one product
 }));
 
-
 // Infer the TypeScript types for the tables
-export type User = typeof users.$inferSelect; 
-export type NewUser = typeof users.$inferInsert; 
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
 
 export type Product = typeof products.$inferSelect;
 export type NewProduct = typeof products.$inferInsert;
