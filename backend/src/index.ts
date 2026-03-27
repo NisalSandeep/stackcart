@@ -5,6 +5,7 @@ import { clerkMiddleware } from "@clerk/express";
 
 const app = express();
 
+
 app.use(cors({ origin: ENV.FRONTEND_URL }));
 app.use(clerkMiddleware()); //auth obj will be attached to the request object
 app.use(express.json()); //req.body
