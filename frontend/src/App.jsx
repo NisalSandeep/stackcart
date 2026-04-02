@@ -18,17 +18,20 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-base-100">
+      <div className="min-h-screen bg-gradient-to-br from-base-100 via-base-200 to-base-100 relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="fixed inset-0 -z-10">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+        </div>
+
         <NavBar />
         <main className="max-w-5xl mx-auto px-4 py-8">
-          <Toaster/>
+          <Toaster />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
             <Route
-              path="/product/:id"
-              element={ <ProductPage /> }
-            />
-            <Route 
               path="/profile"
               element={isSignedIn ? <ProfilePage /> : <Navigate to={"/"} />}
             />
