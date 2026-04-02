@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
+
 import { ENV } from "./config/env";
 import { clerkMiddleware } from "@clerk/express";
 
@@ -16,7 +18,7 @@ app.use(clerkMiddleware()); //clerk middleware to handle authentication and user
 app.use(express.json()); //req.body
 app.use(express.urlencoded({ extended: true })); // parses form data
 
-app.get("/", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
     message: "Welcome to STACKCART API",
     endpoints: {
@@ -30,6 +32,18 @@ app.get("/", (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/comments", commentRoutes);
+
+if (ENV.NODE_ENV === "production") {
+  const __dirname = path.resolve();
+
+  //serve static files from frontend/dist
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  // handle SPA routing, return index.html for all non-API routes
+  app.get("/{*any}", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+  });
+}
 
 app.listen(ENV.PORT, () => {
   console.log(`Server is up and running on port ${ENV.PORT}`);
