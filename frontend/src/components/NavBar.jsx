@@ -7,40 +7,61 @@ function NavBar() {
   const { isSignedIn } = useAuth();
 
   return (
-    <div className="navbar bg-base-300 shadow-sm">
-      <div className="max-w-5xl mx-auto w-full px-4 flex justify-between items-center">
-        {/* Left side: Logo and navigation links */}
-        <div className="flex-1">
-          <Link to={"/"} className="btn btn-ghost gap-2">
-            <ShoppingBagIcon className="size-5 text-primary" />
-            <span className="text-lg font-bold font-mono uppercase tracking-wider">
-              Stackcart
-            </span>
-          </Link>
-        </div>
+    <div className="sticky top-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20">
+      <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+        {/* LOGO */}
+        <Link to={"/"} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <div className="p-2 bg-gradient-to-br from-primary to-secondary rounded-lg">
+            <ShoppingBagIcon className="size-6 text-white" />
+          </div>
+          <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            StackCart
+          </span>
+        </Link>
 
-        <div className="flex gap-2 items-center">
+        {/* RIGHT SIDE */}
+        <div className="flex gap-3 items-center">
           <ThemeSelector />
           {isSignedIn ? (
             <>
-              <Link to={"/create"} className="btn btn-primary btn-sm gap-1">
-                <PlusIcon className="size-4" />
-                <span className="hidden sm:inline">New Product</span>
+              <Link
+                to={"/create"}
+                className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/40 text-primary font-semibold hover:bg-primary/30 transition-all"
+              >
+                <span className="hidden sm:inline flex items-center gap-2">
+                  <PlusIcon className="size-4" />
+                  New
+                </span>
+                <span className="sm:hidden">
+                  <PlusIcon className="size-5" />
+                </span>
               </Link>
 
-              <Link to={"/profile"} className="btn btn-ghost btn-sm gap-1">
-                <UserIcon className="size-4" />
-                <span className="hidden sm:inline">Profile</span>
+              <Link
+                to={"/profile"}
+                className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 hover:bg-white/20 transition-all"
+              >
+                <span className="hidden sm:inline flex items-center gap-2">
+                  <UserIcon className="size-4" />
+                  Profile
+                </span>
+                <span className="sm:hidden">
+                  <UserIcon className="size-5" />
+                </span>
               </Link>
               <UserButton />
             </>
           ) : (
             <>
               <SignInButton mode="modal">
-                <button className="btn btn-ghost btn-sm">Sign In</button>
+                <button className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 hover:bg-white/20 transition-all hidden sm:block">
+                  Sign In
+                </button>
               </SignInButton>
               <SignUpButton>
-                <button className="btn btn-primary btn-sm">Get Started</button>
+                <button className="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all">
+                  Get Started
+                </button>
               </SignUpButton>
             </>
           )}

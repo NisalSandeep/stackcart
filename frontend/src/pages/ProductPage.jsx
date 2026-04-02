@@ -45,13 +45,12 @@ function ProductPage() {
 
   if (error || !product) {
     return (
-      <div className="card bg-base-300 max-w-md mx-auto">
-        <div className="card-body items-center text-center">
-          <h2 className="card-title text-error">Product not found</h2>
-          <Link to="/" className="btn btn-primary btn-sm">
-            Go Home
-          </Link>
-        </div>
+      <div className="max-w-md mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 text-center space-y-4">
+        <h2 className="text-2xl font-bold text-error">Product not found</h2>
+        <p className="text-base-content/60">This product doesn't exist or has been deleted.</p>
+        <Link to="/" className="inline-block px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all">
+          Go Home
+        </Link>
       </div>
     );
   }
@@ -61,23 +60,27 @@ function ProductPage() {
   return (
     <>
       <div className="max-w-4xl mx-auto space-y-6">
+        {/* HEADER */}
         <div className="flex items-center justify-between">
-          <Link to={"/"} className="btn btn-ghost btn-sm gap-1 ">
-            <ArrowLeftIcon className="size-4" /> Back
+          <Link to={"/"} className="inline-flex items-center gap-2 text-base-content/70 hover:text-primary transition-colors">
+            <ArrowLeftIcon className="size-5" />
+            <span>Back</span>
           </Link>
 
           {isOwner && (
             <div className="flex gap-2">
               <Link
                 to={`/edit/${product.id}`}
-                className="btn btn-ghost btn-sm gap-1 "
+                className="p-2 rounded-lg bg-white/10 border border-white/20 hover:bg-primary/20 hover:border-primary/40 transition-all"
+                title="Edit"
               >
-                <EditIcon className="size-4" /> Edit
+                <EditIcon className="size-5" />
               </Link>
               <button
-                className="btn btn-error btn-sm gap-1"
+                className="p-2 rounded-lg bg-white/10 border border-white/20 hover:bg-error/20 hover:border-error/40 transition-all disabled:opacity-50"
                 onClick={handleDeleteProduct}
                 disabled={deleteProduct.isPending}
+                title="Delete"
               >
                 {deleteProduct.isPending ? (
                   <span className="loading loading-spinner loading-xs" />
