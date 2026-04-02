@@ -45,7 +45,7 @@ export const createComments = async ({ productId, content }) => {
   return data;
 };
 
-export const deleteComments = async ({ commentsId }) => {
-  const { data } = await api.delete(`/comments/${commentsId}`);
+export const deleteComments = async ({ commentId }) => {
+  const { data } = await api.delete(`/comments/${commentId}`);
   return data;
 };

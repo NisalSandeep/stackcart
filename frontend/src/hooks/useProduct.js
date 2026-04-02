@@ -1,5 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createProduct, deleteProduct, getAllProducts, getMyProducts, getproductById } from "../lib/api";
+import {
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+  getMyProducts,
+  getproductById,
+  updateProduct,
+} from "../lib/api";
 
 export const useProducts = () => {
   const result = useQuery({
@@ -15,7 +22,7 @@ export const useCreateProduct = () => {
     mutationFn: createProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myProducts"] });
-    }
+    },
   });
   return result;
 };
@@ -27,7 +34,6 @@ export const useProduct = (id) => {
     enabled: !!id,
     // double bang operator to convert id to boolean, so that the query will only run if id is truthy
   });
-  
 };
 
 export const useDeleteProduct = () => {
@@ -36,7 +42,7 @@ export const useDeleteProduct = () => {
     mutationFn: deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myProducts"] });
-    }
+    },
   });
 };
 
@@ -44,5 +50,16 @@ export const useMyProducts = () => {
   return useQuery({
     queryKey: ["myProducts"],
     queryFn: () => getMyProducts(),
+  });
+};
+
+export const useUpdateProduct = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
   });
 };
