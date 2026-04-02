@@ -66,7 +66,7 @@ export const createProduct = async (req: Request, res: Response) => {
       userId,
     });
 
-    res.status(200).json(createProduct);
+    res.status(200).json(createdProduct);
   } catch (error) {
     console.error("Error fetching user's products:", error);
     res.status(500).json({ error: "Failed to get user's products" });
