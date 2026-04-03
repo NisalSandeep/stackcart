@@ -1,4 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: all;
+}
+
+:root {
+  --brand-ring: color-mix(in oklab, var(--color-primary) 35%, transparent);
+}
+
+body {
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  min-height: 100vh;
+ 
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Sora", "Plus Jakarta Sans", sans-serif;
+}
+
+.page-wrap {
+  position: relative;
+}
+
+.page-wrap::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, color-mix(in oklab, var(--color-base-content) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-base-content) 7%, transparent) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at center, black 28%, transparent 88%);
+  opacity: 0.23;
+}
+
+.glass-panel {
+  background: color-mix(in oklab, var(--color-base-100) 78%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in oklab, var(--color-base-content) 14%, transparent);
+}
+
+.hero-chip {
+  border: 1px solid color-mix(in oklab, var(--color-primary) 35%, transparent);
+  background: color-mix(in oklab, var(--color-primary) 11%, transparent);
 }

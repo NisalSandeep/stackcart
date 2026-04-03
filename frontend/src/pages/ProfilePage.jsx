@@ -16,12 +16,12 @@ const ProfilePage = () => {
 
   if (!isSignedIn) {
     return (
-      <div className="card bg-base-300 max-w-md mx-auto">
+      <div className="card glass-panel max-w-md mx-auto">
         <div className="card-body items-center text-center">
-          <h2 className="card-title">Sign in Required</h2>
-          <p className="text-base-content/60">Please sign in to view your products</p>
+          <h2 className="card-title">Sign in required</h2>
+          <p className="text-base-content/60">Log in to manage your published products.</p>
           <SignInButton mode="modal">
-            <button className="btn btn-primary mt-4">Sign In</button>
+            <button className="btn btn-primary mt-4">Log in</button>
           </SignInButton>
         </div>
       </div>
@@ -32,10 +32,10 @@ const ProfilePage = () => {
 
   if (error) {
     return (
-      <div className="card bg-base-300 max-w-md mx-auto">
+      <div className="card glass-panel max-w-md mx-auto">
         <div className="card-body items-center text-center">
-          <h2 className="card-title text-error">Error Loading Products</h2>
-          <p className="text-base-content/60">{error.message || "Failed to load your products"}</p>
+          <h2 className="card-title text-error">Couldn't load products</h2>
+          <p className="text-base-content/60">{error.message || "Please try again in a moment."}</p>
           <button onClick={() => window.location.reload()} className="btn btn-primary mt-4">
             Retry
           </button>
@@ -48,38 +48,38 @@ const ProfilePage = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">My Products</h1>
-          <p className="text-base-content/60 text-sm">Manage your listings</p>
+          <h1 className="text-2xl font-display font-bold">Creator dashboard</h1>
+          <p className="text-base-content/60 text-sm">Track and manage everything you published.</p>
         </div>
         <Link to="/create" className="btn btn-primary btn-sm gap-1">
-          <PlusIcon className="size-4" /> New
+          <PlusIcon className="size-4" /> Publish
         </Link>
       </div>
 
       {/* Stats */}
-      <div className="stats bg-base-300 w-full">
+      <div className="stats glass-panel w-full">
         <div className="stat">
-          <div className="stat-title">Total Products</div>
+          <div className="stat-title">Total products</div>
           <div className="stat-value text-primary">{products?.length || 0}</div>
         </div>
       </div>
 
       {/* Products */}
       {products?.length === 0 ? (
-        <div className="card bg-base-300">
+        <div className="card glass-panel">
           <div className="card-body items-center text-center py-16">
             <PackageIcon className="size-16 text-base-content/20" />
             <h3 className="card-title text-base-content/50">No products yet</h3>
-            <p className="text-base-content/40 text-sm">Start by creating your first product</p>
+            <p className="text-base-content/40 text-sm">Publish your first product to start growing your page.</p>
             <Link to="/create" className="btn btn-primary btn-sm mt-4">
-              Create Product
+              Publish product
             </Link>
           </div>
         </div>
       ) : (
         <div className="grid gap-4">
           {products.map((product) => (
-            <div key={product.id} className="card card-side bg-base-300">
+            <div key={product.id} className="card card-side glass-panel">
               <figure className="w-32 shrink-0">
                 <img src={product.imageUrl} alt={product.title} className="h-full object-cover" />
               </figure>

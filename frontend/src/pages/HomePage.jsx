@@ -22,65 +22,80 @@ function HomePage() {
   }
 
   return (
-    <div className="space-y-10">
-      {/* HERO */}
-      <div className="hero bg-linear-to-br from-base-300 via-base-200 to-base-300 rounded-box overflow-hidden">
-        <div className="hero-content flex-col lg:flex-row-reverse gap-10 py-10">
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-110" />
+    <>
+      <section className="relative overflow-hidden rounded-3xl border border-base-content/10 glass-panel px-6 md:px-10 py-10 md:py-14 mb-10">
+        <div className="absolute -top-24 -left-16 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute -bottom-16 -right-10 w-72 h-72 rounded-full bg-secondary/20 blur-3xl" />
+
+        <div className="relative grid lg:grid-cols-2 items-center gap-8 md:gap-10">
+          <div className="space-y-5 text-center lg:text-left">
+            <div className="hero-chip inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold">
+              <SparklesIcon className="size-3.5" />
+              Creator marketplace, simplified
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight font-display font-extrabold tracking-tight">
+              Launch products people actually notice.
+            </h1>
+
+            <p className="text-base md:text-lg text-base-content/70 max-w-xl">
+              Publish your next product, tell a clearer story, and turn visitors
+              into loyal users with a cleaner storefront.
+            </p>
+
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+              <SignInButton mode="modal">
+                <button className="btn btn-primary px-6">
+                  <SparklesIcon className="size-4" />
+                  Start publishing
+                </button>
+              </SignInButton>
+              <a href="#products" className="btn btn-outline">
+                Explore products
+              </a>
+            </div>
+          </div>
+
+          <div className="relative mx-auto lg:ml-auto">
+            <div className="absolute inset-0 rounded-3xl bg-primary/25 blur-2xl scale-95" />
             <img
               src="/image.png"
-              alt="Creator"
-              className="relative h-64 lg:h-72 rounded-2xl shadow-2xl"
+              alt="Featured creator showcase"
+              className="relative h-64 md:h-72 w-full max-w-md object-cover rounded-3xl shadow-2xl border border-base-content/10"
             />
           </div>
-          <div className="text-center lg:text-left">
-            <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Share Your <span className="text-primary">Products</span>
-            </h1>
-            <p className="py-4 text-base-content/60">
-              Upload, discover, and connect with creators.
-            </p>
-            <SignInButton mode="modal">
-              <button className="btn btn-primary">
-                <SparklesIcon className="size-4" />
-                Start Selling
-              </button>
-            </SignInButton>
-          </div>
         </div>
-      </div>
+      </section>
 
-      {/* PRODUCTS */}
+      <section id="products" className="space-y-10">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
+        <h2 className="text-xl md:text-2xl font-display font-bold flex items-center gap-2 mb-4">
           <PackageIcon className="size-5 text-primary" />
-          All Products
+          Trending products
         </h2>
         {products.length === 0 ? (
-          <div className="card bg-base-300">
+          <div className="card glass-panel">
             <div className="card-body items-center text-center py-16">
               <PackageIcon className="size-16 text-base-content/20" />
-              <h3 className="card-title text-base-content/50">
-                No products yet
-              </h3>
+              <h3 className="card-title text-base-content/70">No products yet</h3>
               <p className="text-base-content/40 text-sm">
-                Be the first to share something!
+                Be the first creator to launch something here.
               </p>
               <Link to="/create" className="btn btn-primary btn-sm mt-2">
-                Create Product
+                Publish product
               </Link>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         )}
       </div>
-    </div>
+      </section>
+    </>
   );
 }
 

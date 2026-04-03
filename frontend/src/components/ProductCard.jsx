@@ -9,21 +9,23 @@ const ProductCard = ({ product }) => {
   return (
     <Link
       to={`/product/${product.id}`}
-      className="card bg-base-300 hover:bg-base-200 transition-colors"
+      className="card glass-panel hover:-translate-y-1 hover:shadow-xl transition-all duration-200"
     >
       <figure className="px-4 pt-4">
         <img
           src={product.imageUrl}
           alt={product.title}
-          className="rounded-xl h-40 w-full object-cover"
+          className="rounded-xl h-44 w-full object-cover border border-base-content/10"
         />
       </figure>
       <div className="card-body p-4">
-        <h2 className="card-title text-base">
+        <h2 className="card-title text-base md:text-lg font-display leading-tight">
           {product.title}
           {isNew && <span className="badge badge-secondary badge-sm">NEW</span>}
         </h2>
-        <p className="text-sm text-base-content/70 line-clamp-2">{product.description}</p>
+        <p className="text-sm text-base-content/70 line-clamp-2">
+          {product.description}
+        </p>
 
         <div className="divider my-1"></div>
 
@@ -39,9 +41,9 @@ const ProductCard = ({ product }) => {
             </div>
           )}
           {product.comments && (
-            <div className="flex items-center gap-1 text-base-content/50">
+            <div className="flex items-center gap-1 text-base-content/50" title="Comments">
               <MessageCircleIcon className="size-3" />
-              <span className="text-xs">{product.comments.length}</span>
+              <span className="text-xs">{product.comments.length} comments</span>
             </div>
           )}
         </div>

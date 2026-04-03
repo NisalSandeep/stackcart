@@ -1,4 +1,3 @@
-import { SignIn, SignInButton, SignOutButton } from "@clerk/react";
 import NavBar from "./components/NavBar";
 import { Navigate, Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
@@ -17,33 +16,28 @@ function App() {
   if (!isClerkLoaded) return null;
 
   return (
-    <>
-      <div className="min-h-screen bg-base-100">
-        <NavBar />
-        <main className="max-w-5xl mx-auto px-4 py-8">
-          <Toaster/>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/product/:id"
-              element={ <ProductPage /> }
-            />
-            <Route 
-              path="/profile"
-              element={isSignedIn ? <ProfilePage /> : <Navigate to={"/"} />}
-            />
-            <Route
-              path="/create"
-              element={isSignedIn ? <CreatePage /> : <Navigate to={"/"} />}
-            />
-            <Route
-              path="/edit/:id"
-              element={isSignedIn ? <EditProductPage /> : <Navigate to={"/"} />}
-            />
-          </Routes>
-        </main>
-      </div>
-    </>
+    <div className="min-h-screen page-wrap">
+      <NavBar />
+      <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-10">
+        <Toaster position="top-center" />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route
+            path="/profile"
+            element={isSignedIn ? <ProfilePage /> : <Navigate to={"/"} />}
+          />
+          <Route
+            path="/create"
+            element={isSignedIn ? <CreatePage /> : <Navigate to={"/"} />}
+          />
+          <Route
+            path="/edit/:id"
+            element={isSignedIn ? <EditProductPage /> : <Navigate to={"/"} />}
+          />
+        </Routes>
+      </main>
+    </div>
   );
 }
 

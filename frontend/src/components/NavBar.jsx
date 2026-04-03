@@ -7,13 +7,12 @@ function NavBar() {
   const { isSignedIn } = useAuth();
 
   return (
-    <div className="navbar bg-base-300 shadow-sm">
-      <div className="max-w-5xl mx-auto w-full px-4 flex justify-between items-center">
-        {/* Left side: Logo and navigation links */}
+    <header className="sticky top-0 z-40 backdrop-blur-md border-b border-base-content/10 bg-base-100/75">
+      <div className="navbar w-full max-w-6xl mx-auto px-4 md:px-6 flex justify-between items-center">
         <div className="flex-1">
-          <Link to={"/"} className="btn btn-ghost gap-2">
+          <Link to={"/"} className="btn btn-ghost gap-2 normal-case hover:bg-base-200/70">
             <ShoppingBagIcon className="size-5 text-primary" />
-            <span className="text-lg font-bold font-mono uppercase tracking-wider">
+            <span className="text-lg font-display font-bold tracking-tight">
               Stackcart
             </span>
           </Link>
@@ -25,28 +24,28 @@ function NavBar() {
             <>
               <Link to={"/create"} className="btn btn-primary btn-sm gap-1">
                 <PlusIcon className="size-4" />
-                <span className="hidden sm:inline">New Product</span>
+                <span className="hidden sm:inline">Create</span>
               </Link>
 
               <Link to={"/profile"} className="btn btn-ghost btn-sm gap-1">
                 <UserIcon className="size-4" />
-                <span className="hidden sm:inline">Profile</span>
+                <span className="hidden sm:inline">Dashboard</span>
               </Link>
               <UserButton />
             </>
           ) : (
             <>
               <SignInButton mode="modal">
-                <button className="btn btn-ghost btn-sm">Sign In</button>
+                <button className="btn btn-ghost btn-sm">Log in</button>
               </SignInButton>
               <SignUpButton>
-                <button className="btn btn-primary btn-sm">Get Started</button>
+                <button className="btn btn-primary btn-sm">Get started</button>
               </SignUpButton>
             </>
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

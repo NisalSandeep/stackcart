@@ -26,20 +26,22 @@ function CreatePage() {
         <ArrowLeftIcon className="size-4" /> Back
       </Link>
 
-      <div className="card bg-base-300">
+      <div className="card glass-panel">
         <div className="card-body">
-          <h1 className="card-title">
+          <h1 className="card-title text-2xl font-display">
             <SparklesIcon className="size-5 text-primary" />
-            New Product
+            Publish a Product
           </h1>
+          <p className="text-sm text-base-content/65">
+            Write clear details so people understand the value in seconds.
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-            {/* TITLE INPUT */}
             <label className="input input-bordered flex items-center gap-2 bg-base-200">
               <TypeIcon className="size-4 text-base-content/50" />
               <input
                 type="text"
-                placeholder="Product title"
+                placeholder="Product title (e.g. TaskFlow CRM)"
                 className="grow"
                 value={formData.title}
                 onChange={(e) =>
@@ -49,12 +51,11 @@ function CreatePage() {
               />
             </label>
 
-            {/* IMGURL INPUT */}
             <label className="input input-bordered flex items-center gap-2 bg-base-200">
               <ImageIcon className="size-4 text-base-content/50" />
               <input
                 type="url"
-                placeholder="Image URL"
+                placeholder="Cover image URL"
                 className="grow"
                 value={formData.imageUrl}
                 onChange={(e) =>
@@ -64,9 +65,8 @@ function CreatePage() {
               />
             </label>
 
-            {/* IMG PREVIEW */}
             {formData.imageUrl && (
-              <div className="rounded-box overflow-hidden">
+              <div className="rounded-box overflow-hidden border border-base-content/10">
                 <img
                   src={formData.imageUrl}
                   alt="Preview"
@@ -80,7 +80,7 @@ function CreatePage() {
               <div className="flex items-start gap-2 p-3 rounded-box bg-base-200 border border-base-300">
                 <FileTextIcon className="size-4 text-base-content/50 mt-1" />
                 <textarea
-                  placeholder="Description"
+                  placeholder="What does this product solve? Who is it for?"
                   className="grow bg-transparent resize-none focus:outline-none min-h-24"
                   value={formData.description}
                   onChange={(e) =>
@@ -105,7 +105,7 @@ function CreatePage() {
               {createProduct.isPending ? (
                 <span className="loading loading-spinner" />
               ) : (
-                "Create Product"
+                "Publish now"
               )}
             </button>
           </form>

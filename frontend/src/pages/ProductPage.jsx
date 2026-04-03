@@ -26,16 +26,16 @@ function ProductPage() {
         "Are you sure you want to delete this product? This action cannot be undone.",
       )
     ) {
-      toast.error("Product deletion cancelled");
+      toast.error("Deletion canceled");
       return;
     }
 
     deleteProduct.mutate(id, {
       onSuccess: () => {
-        toast.success("Successfully Deleted the product");
+        toast.success("Product deleted successfully");
         navigate("/");
       },
-      onError: toast.error("Failed to Delete the product"),
+      onError: () => toast.error("Could not delete product"),
     });
   };
 
@@ -63,7 +63,7 @@ function ProductPage() {
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <Link to={"/"} className="btn btn-ghost btn-sm gap-1 ">
-            <ArrowLeftIcon className="size-4" /> Back
+            <ArrowLeftIcon className="size-4" /> All products
           </Link>
 
           {isOwner && (
@@ -72,7 +72,7 @@ function ProductPage() {
                 to={`/edit/${product.id}`}
                 className="btn btn-ghost btn-sm gap-1 "
               >
-                <EditIcon className="size-4" /> Edit
+                <EditIcon className="size-4" /> Edit listing
               </Link>
               <button
                 className="btn btn-error btn-sm gap-1"
@@ -84,7 +84,7 @@ function ProductPage() {
                 ) : (
                   <Trash2Icon className="size-4" />
                 )}
-                Delete
+                Remove
               </button>
             </div>
           )}
@@ -92,7 +92,7 @@ function ProductPage() {
 
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Image */}
-          <div className="card bg-base-300">
+          <div className="card glass-panel">
             <figure className="p-4">
               <img
                 src={product.imageUrl}
@@ -102,7 +102,7 @@ function ProductPage() {
             </figure>
           </div>
 
-          <div className="card bg-base-300">
+          <div className="card glass-panel">
             <div className="card-body">
               <h1 className="card-title text-2xl">{product.title}</h1>
 
@@ -144,7 +144,7 @@ function ProductPage() {
             </div>
           </div>
         </div>
-        <div className="card bg-base-300">
+        <div className="card glass-panel">
           <div className="card-body">
             <CommentsSection
               productId={id}

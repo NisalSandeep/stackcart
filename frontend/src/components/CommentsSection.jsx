@@ -45,7 +45,7 @@ export const CommentsSection = ({
         <form onSubmit={hanldeSubmit} className="flex gap-2">
           <input
             type="text"
-            placeholder="Add a Comment..."
+            placeholder="Share your thoughts"
             className="input input-bordered input-sm flex-1 bg-base-200"
             value={content}
             onChange={(e) => setContent(e.target.value)}
@@ -64,14 +64,14 @@ export const CommentsSection = ({
           </button>
         </form>
       ) : (
-        <div className="flex items-center justify-between bg-base-200 rounded-lg p-3">
+        <div className="flex items-center justify-between bg-base-200 rounded-lg p-3 border border-base-content/10">
           <span className="text-sm text-base-content/60">
-            Sign in to join the conversation
+            Log in to join the discussion
           </span>
           <SignInButton mode="modal">
             <button className="btn btn-primary btn-sm gap-1">
               <LogInIcon className="size-4" />
-              Sign In
+              Log in
             </button>
           </SignInButton>
         </div>
@@ -81,7 +81,7 @@ export const CommentsSection = ({
         {comments.length === 0 ? (
           <div className="text-center py-8 text-base-content/50">
             <MessageSquareIcon className="size-8 mx-auto mb-2 opacity-30" />
-            <p className="text-sm">No comments yet. Be first!</p>
+            <p className="text-sm">No comments yet. Start the conversation.</p>
           </div>
         ) : (
           comments.map((comment) => (
